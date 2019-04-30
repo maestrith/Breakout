@@ -2,10 +2,8 @@
 SetBatchLines,-1
 SetWinDelay -1
 Width:=800,Height:=500
-global BB:=new BreakOut(Width,Height,25,20,300,30,5,3),ID
-/*
-	BB.Zen:=1
-*/
+global BB:=new BreakOut(Width,Height,25,20,100,30,5,3),ID
+BB.Zen:=1
 SetTimer,Tick,10
 return
 F1::
@@ -28,7 +26,7 @@ Tick(){
 		else if(b.x-b.r<=0)
 			b.hx:=b.hx*-1,b.x:=b.r
 		if(BB.Height<=b.y+b.r){
-			(BB.Zen?(b.hy:=b.hy*-1,b.y:=BB.Height-b.r):(BB.Balls.Remove(a),b.Obj.ParentNode.RemoveChild(b.Obj)))
+			(BB.Zen?(b.hy:=b.hy*-1,b.y:=BB.Height-b.r):(BB.Balls.Remove(a),b.Obj.ParentNode.RemoveChild()))
 		}else if(b.y-b.r<=0)
 			b.hy:=b.hy*-1,b.y:=b.r
 		b.Obj.SetAttribute("cx",b.x),b.Obj.SetAttribute("cy",b.y),Side:=b.hx<0?b.x-b.r:b.x+b.r,Top:=b.hy<0?b.y-b.r:b.y+b.r,RemX:=Floor(Side-Mod(Side,w)),RemY:=Floor(Top-Mod(Top,h))
@@ -42,7 +40,7 @@ Tick(){
 	}if(!Count:=BB.BricksSVG.GetElementsByTagName("rect").Length){
 		for a,b in BB.Balls
 			b.Obj.ParentNode.RemoveChild(b.Obj)
-		return Display(BB.Moved=0?"Sometimes the best way to play is to not play at all":BB.Zen?"Way to go man.":"Well done you!",BB.Moved?1000:5000),New()
+		return Display(BB.Moved=0?"Sometimes the best way to play is to not play at all":BB.Zen?"Well done you!.":"Well done you!",BB.Moved?1000:5000),New()
 	}if(!BB.Balls.MinIndex()){
 		if(BB.Lives>0){
 			BB.Lives-=1,Display(BB.Lives>0?BB.Lives (BB.Lives>1?" Lives ":" Life ") " Remaining":"Last Life, Make it count!")
