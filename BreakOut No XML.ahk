@@ -40,7 +40,7 @@ Tick(){
 	}if(!Count:=BB.BricksSVG.GetElementsByTagName("rect").Length){
 		for a,b in BB.Balls
 			b.Obj.ParentNode.RemoveChild(b.Obj)
-		return Display(BB.Moved=0?"Sometimes the best way to play is to not play at all":BB.Zen?"Well done you!.":"Well done you!",BB.Moved?1000:5000),New()
+		return Display(BB.Moved=0?"Sometimes the best way to play is to not play at all":BB.Zen?"Well done you!":"Well done you!",BB.Moved?1000:5000),New()
 	}if(!BB.Balls.MinIndex()){
 		if(BB.Lives>0){
 			BB.Lives-=1,Display(BB.Lives>0?BB.Lives (BB.Lives>1?" Lives ":" Life ") " Remaining":"Last Life, Make it count!")
